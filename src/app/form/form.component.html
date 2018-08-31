@@ -1,0 +1,128 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Welcome to IExpress Dashboard</h1>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <!-- <input type="text" class="form-control" > -->
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Employee ID*" maxlength="8" formControlName="employeeID" (keyup)="checkEmployeeIdStatus()" autocomplete="off">
+                        </mat-form-field>
+                        <div *ngIf="!myForm.controls['employeeID'].valid && (myForm.controls['employeeID'].touched)"
+                        class="alert alert-danger">
+                            <div [hidden]="!myForm.controls['employeeID'].errors?.required">
+                            Employee ID is required.
+                            </div>
+                            <div [hidden]="!myForm.controls['employeeID'].errors?.pattern">
+                            Invalid employee ID E.g. M1044368
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="statusToHideFormFields">
+                <div class="col-sm-6 animated slideInLeft">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input  placeholder="Projects*"  aria-label="Number" matInput formControlName="projects" (ngModelChange)="selectTrack()" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let data of datas" [value]="data.Description">
+                                {{data.Description}}
+                            </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <!-- <select formControlName="projects" class="form-control" (change)="onChange($event.target.value)">
+                            <option *ngFor="let data of datas" [value]="data.project">{{data.project}}</option>
+                        </select>     -->
+                    </div>
+                </div>
+                <div class="col-sm-6 animated slideInRight">
+                    <div class="form-group">
+                        
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Tracks*" aria-label="tracks" [matAutocomplete]="auto1" formControlName="tracks">
+                            <mat-autocomplete #auto1="matAutocomplete">
+                            <mat-option *ngFor="let track of tracks" [value]="track.Description">
+                            {{track.Description}}
+                            </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>  
+                    <!-- <select formControlName="tracks" class="form-control">
+                        <option *ngFor="let track of tracks" [value]="track">{{track}}</option>
+                    </select>     -->
+                    </div>
+                </div>
+                <div class="col-sm-6 animated slideInLeft">
+                    <div class="form-group">
+                    <!-- <input type="date" class="form-control" min="2016-01-01" max='{{maxDate| date:"yyyy-MM-dd"}}' formControlName="startDate"> -->
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" [min]="startMinDate" placeholder="Start Date*" formControlName="startDate" (ngModelChange)="setEndMinDate()" autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-6 animated slideInRight">
+                    <div class="form-group">
+                    <!-- <input type="date" class="form-control" formControlName="endDate"> -->
+                    <mat-form-field>
+                            <input matInput [matDatepicker]="endDatepicker" [min]="endMinDate" [max]="endMaxDate" placeholder="End Date" formControlName="endDate" autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #endDatepicker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-6 animated slideInLeft">
+                    <div class="form-group">
+                    <label class="" style="display:block">Staus*:</label>
+                        <mat-radio-group class="example-radio-group" formControlName="status">
+                            <mat-radio-button class="example-radio-button" *ngFor="let status of statuss" [value]="status.Description">
+                                {{status.Description}} &nbsp;&nbsp;
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    <!-- <label class="radio-inline">
+                        <input type="radio" class="radio-inline" formControlName="status" value="Ahead">Ahead &nbsp;
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" class="radio-inline" formControlName="status" value="On Track">On Track &nbsp;
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" class="radio-inline" formControlName="status" value="Blocked">Blocked &nbsp;
+                    </label> -->
+                    </div>
+                </div>
+                <div class="col-sm-6 animated slideInRight">
+                    <div class="form-group">
+                    <label class="" style="display:block">Quality*:</label>
+                        <mat-radio-group class="example-radio-group" formControlName="quality">
+                            <mat-radio-button class="example-radio-button" *ngFor="let quality of qualitylist" [value]="quality.Description">
+                                {{quality.Description}} &nbsp;&nbsp;
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    
+                    <!-- <label class="radio-inline">
+                        <input type="radio" class="radio-inline" formControlName="quality" value="Good">Good &nbsp;
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" class="radio-inline" formControlName="quality" value="Bad">Bad &nbsp;
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" class="radio-inline" formControlName="quality" value="Average">Average &nbsp;
+                    </label>                       -->
+                    </div>                    
+                </div>
+            <!-- <input type="submit" value="Submit" > -->
+                <div class="col-sm-12 mtop-20">
+                    <div class="button-row text-center">
+                        <button mat-raised-button  type="submit" color="primary" [disabled]="!myForm.valid">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

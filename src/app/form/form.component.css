@@ -1,0 +1,15 @@
+.mat-form-field{
+	width: 100%;
+}
+.mat-input-element{
+	caret-color: darkgrey;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label{
+	color: #fff !important;
+  }
+.mtop-20{
+	margin-top:20px
+}
+
+  
