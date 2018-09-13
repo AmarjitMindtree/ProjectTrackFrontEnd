@@ -48,4 +48,9 @@ export namespace ProjectTrackEntity {
         EmployeeId: string;
         EntryDate: Date;
     }
+
+    export class CheckData {
+        EmployeeId: string;
+        EntryDate: string;
+    }
 }

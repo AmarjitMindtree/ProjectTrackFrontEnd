@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule,MatButtonModule, MatNativeDateModule,MatRadioModule,MatFormFieldModule, MatInputModule, MatRippleModule, MatDatepickerModule} from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatNativeDateModule, MatRadioModule,
+         MatFormFieldModule, MatInputModule, MatRippleModule, MatDatepickerModule} from '@angular/material';
 import { HttpClientModule  } from '@angular/common/http';
 import { ClickOutsideModule } from 'ng4-click-outside';
 
